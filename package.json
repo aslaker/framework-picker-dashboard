@@ -19,7 +19,7 @@
   "scripts": {
     "prestart": "cd functions && yarn install",
     "start": "react-scripts start",
-    "prebuild": "cd functions/api && yarn install",
+    "prebuild": "cd functions && yarn install",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
