@@ -3,7 +3,7 @@
     command = "yarn build"
     functions = "functions"
     publish = "build"
-    environment = { SEED = "true" }
+    environment = { SEED = "true", NODE_VERSION = 12 }
 
 [context.production]
-    environment = { SEED = "false" }
+    environment = { SEED = "false", NODE_VERSION = 12 }
