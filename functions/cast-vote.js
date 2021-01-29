@@ -2,7 +2,7 @@
 const { Vote } = require("./data/sequelize");
 
 exports.handler = (event) => {
-  console.log("Function `todo-read-all` invoked");
+  console.log("Function `cast-vote` invoked");
 
   const { email, choice } = JSON.parse(event.body);
 

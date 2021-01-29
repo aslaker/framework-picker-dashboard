@@ -4,7 +4,7 @@ const { Vote, db } = require("./data/sequelize");
 console.log(__dirname);
 
 exports.handler = () => {
-  console.log("Function `todo-read-all` invoked");
+  console.log("Function `get-choices` invoked");
 
   return Vote.findAll({
     raw: true,

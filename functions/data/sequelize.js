@@ -10,10 +10,12 @@ const sequelize = new Sequelize({
 
 const Vote = VoteModel(sequelize, DataTypes);
 
+const shouldSeedDB = process.env.SEED === "true";
+
 sequelize
-  .sync({ force: process.env.SEED })
+  .sync({ force: shouldSeedDB })
   .then(() => {
-    if (process.env.SEED) {
+    if (shouldSeedDB) {
       votes.forEach((seedItem) => {
         Vote.create({
           email: seedItem.email,
