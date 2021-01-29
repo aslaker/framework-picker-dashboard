@@ -17,8 +17,9 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
+    "prestart": "cd functions && yarn install",
     "start": "react-scripts start",
-    "prebuild": "cd functions/api && npm install",
+    "prebuild": "cd functions/api && yarn install",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

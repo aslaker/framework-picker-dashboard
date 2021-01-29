@@ -4,6 +4,9 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Grommet } from "grommet";
 import { createGlobalStyle } from "styled-components";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -28,10 +31,12 @@ const theme = {
 
 ReactDOM.render(
   <React.StrictMode>
-    <Grommet theme={theme} full>
-      <GlobalStyle />
-      <App />
-    </Grommet>
+    <QueryClientProvider client={queryClient}>
+      <Grommet theme={theme} full>
+        <GlobalStyle />
+        <App />
+      </Grommet>
+    </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

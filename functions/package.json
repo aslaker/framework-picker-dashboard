@@ -1,0 +1,20 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "api.js",
+  "scripts": {
+    "start:dev": "SEED=true node ./data/sequelize.js",
+    "start": "SEED=false node ./data/sequelize.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-serverless-express": "^3.4.0",
+    "express": "^4.17.1",
+    "sequelize": "^6.5.0",
+    "serverless-http": "^2.7.0",
+    "sqlite3": "5.0.0"
+  }
+}
