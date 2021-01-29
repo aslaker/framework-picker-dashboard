@@ -1,8 +1,10 @@
+import { Box } from "grommet";
+
 function App() {
   return (
-    <div>
-      <h1>Adam's App</h1>
-    </div>
+    <Box background="brand" fill>
+      <h1>Adam</h1>
+    </Box>
   );
 }
 
