@@ -6,11 +6,9 @@ import {
   Card,
   CardBody,
   CardHeader,
-  CardFooter,
   Heading,
   Box,
   Image,
-  Button,
 } from "grommet";
 import { Star, View, Archive } from "grommet-icons";
 
