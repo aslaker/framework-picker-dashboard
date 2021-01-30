@@ -1,10 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { Grommet } from "grommet";
-import { createGlobalStyle } from "styled-components";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { createGlobalStyle } from "styled-components";
+
+// Grommet
+import { Grommet } from "grommet";
+
+// Components
+import App from "./App";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +40,7 @@ ReactDOM.render(
       <Grommet theme={theme} full>
         <GlobalStyle />
         <App />
+        <ReactQueryDevtools />
       </Grommet>
     </QueryClientProvider>
   </React.StrictMode>,
