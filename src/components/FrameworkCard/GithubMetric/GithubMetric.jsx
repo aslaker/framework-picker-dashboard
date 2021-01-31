@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "grommet";
 
-const GithubMetric = ({ children, title }) => {
+const GithubMetric = ({ children, title, ...rest }) => {
   return (
     <Box
       width="small"
@@ -11,20 +11,7 @@ const GithubMetric = ({ children, title }) => {
       align="center"
       gap="small"
       title={title}
-      border={[
-        {
-          color: "border",
-          size: "small",
-          style: "solid",
-          side: "right",
-        },
-        {
-          color: "border",
-          size: "small",
-          style: "solid",
-          side: "left",
-        },
-      ]}
+      {...rest}
     >
       {children}
     </Box>

@@ -2,14 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as numeral from "numeral";
 
 // Grommet
-import {
-  Card,
-  CardBody,
-  CardHeader,
-  Heading,
-  Box,
-  Image,
-} from "grommet";
+import { Card, CardBody, CardHeader, Heading, Box, Image } from "grommet";
 import { Star, View, Archive } from "grommet-icons";
 
 // Components
@@ -50,7 +43,13 @@ const FrameworkCard = ({ display, name, imgSrc, repoUrl }) => {
           <Star />{" "}
           <span>{numeral(cardData.stargazers_count).format("Oa")}</span>
         </GithubMetric>
-        <GithubMetric title="Number of people watching the repo">
+        <GithubMetric
+          title="Number of people watching the repo"
+          border={[
+            { size: "small", side: "right" },
+            { size: "small", side: "left" },
+          ]}
+        >
           <View />{" "}
           <span>{numeral(cardData.subscribers_count).format("Oa")}</span>
         </GithubMetric>

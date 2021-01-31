@@ -1,27 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 
 // Grommet
-import { Box } from "grommet";
+import { Box, Button, Layer } from "grommet";
 
 // Components
 import FrameworkCard from "./components/FrameworkCard/FrameworkCard";
+import FrameworkDetails from "./components/FrameworkDetails/FrameworkDetails";
 
 // Data
 import { frameworks } from "./data/frameworks";
 
 function App() {
+  const [isTableShowing, setIsTableShowing] = useState(false);
   return (
     <Box
+      fill
       background="brand"
-      direction="row"
+      direction="column"
       justify="center"
       align="center"
-      gap="medium"
-      fill
+      gap="large"
     >
-      {frameworks.map((framework) => (
-        <FrameworkCard {...framework} />
-      ))}
+      <Box direction="row" justify="center" align="center" gap="medium">
+        {frameworks.map((framework) => (
+          <FrameworkCard {...framework} />
+        ))}
+      </Box>
+      <Button
+        primary
+        color="accent-1"
+        label="View Details"
+        onClick={() => setIsTableShowing(true)}
+      />
+      {isTableShowing ? (
+        <Layer
+          onEsc={() => setIsTableShowing(false)}
+          onClickOutside={() => setIsTableShowing(false)}
+        >
+          <FrameworkDetails />
+        </Layer>
+      ) : null}
     </Box>
   );
 }
