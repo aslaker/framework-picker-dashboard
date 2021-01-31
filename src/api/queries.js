@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 
 import { githubAPI } from "./api";
 
-const DEFAULT_REFETCH_INTERVAL = 1000 * 15;
+const DEFAULT_REFETCH_INTERVAL = 1000 * 60;
 
 export const useRepo = ({ name, repoUrl }) => {
   return useQuery(

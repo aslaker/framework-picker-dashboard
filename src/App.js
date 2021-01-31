@@ -6,6 +6,7 @@ import { Box, Button, Layer } from "grommet";
 // Components
 import FrameworkCard from "./components/FrameworkCard/FrameworkCard";
 import FrameworkDetails from "./components/FrameworkDetails/FrameworkDetails";
+import ErrorBoundary from "./components/errors/ErrorBoundary";
 
 // Data
 import { frameworks } from "./data/frameworks";
@@ -23,7 +24,9 @@ function App() {
     >
       <Box direction="row" justify="center" align="center" gap="medium">
         {frameworks.map((framework) => (
-          <FrameworkCard {...framework} />
+          <ErrorBoundary>
+            <FrameworkCard {...framework} />
+          </ErrorBoundary>
         ))}
       </Box>
       <Button
@@ -37,7 +40,9 @@ function App() {
           onEsc={() => setIsTableShowing(false)}
           onClickOutside={() => setIsTableShowing(false)}
         >
-          <FrameworkDetails />
+          <ErrorBoundary>
+            <FrameworkDetails />
+          </ErrorBoundary>
         </Layer>
       ) : null}
     </Box>
