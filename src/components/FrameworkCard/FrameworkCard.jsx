@@ -30,7 +30,7 @@ const FrameworkCard = ({ display, name, imgSrc, repoUrl, onNewData }) => {
       });
       onNewData({ name, ...data });
     }
-  }, [data, name]);
+  }, [data, name, onNewData]);
 
   return (
     <Card height="medium" width="medium" background="light-1">
