@@ -3,7 +3,7 @@ export const frameworks = [
     name: "angular.js",
     display: "AngularJS",
     imgSrc: "https://angular.io/assets/images/logos/angular/angular.svg",
-    repoUrl: "/repos/angular/angular",
+    repoUrl: "/repos/angular/angular.js",
   },
   {
     name: "react",
