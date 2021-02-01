@@ -1,7 +1,7 @@
 export const frameworks = [
   {
-    name: "angular",
-    display: "Angular",
+    name: "angular.js",
+    display: "AngularJS",
     imgSrc: "https://angular.io/assets/images/logos/angular/angular.svg",
     repoUrl: "/repos/angular/angular",
   },
@@ -19,8 +19,8 @@ export const frameworks = [
     repoUrl: "/repos/vuejs/vue",
   },
   {
-    name: "ember",
-    display: "Ember",
+    name: "ember.js",
+    display: "EmberJS",
     imgSrc: "https://emberjs.com/images/brand/ember_E-Icon-4c-Square.png",
     repoUrl: "/repos/emberjs/ember.js",
   },

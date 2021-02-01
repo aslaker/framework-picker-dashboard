@@ -11,30 +11,8 @@ import ErrorBoundary from "./components/errors/ErrorBoundary";
 // Data
 import { frameworks } from "./data/frameworks";
 
-function findAndReplaceData(tableData, newData) {
-  const tableDataCopy = [...tableData];
-  const tableIndex = tableDataCopy.findIndex(
-    (tableItem) => tableItem.name === newData.name
-  );
-  if (tableIndex === -1) {
-    tableDataCopy.push(newData);
-  } else {
-    tableDataCopy[tableIndex] = newData;
-  }
-  return tableDataCopy;
-}
-
 function App() {
-  const [tableData, setTableData] = useState([]);
   const [isTableShowing, setIsTableShowing] = useState(false);
-
-  const onNewData = useCallback(
-    (newData) => {
-      const newTableData = findAndReplaceData(tableData, newData);
-      setTableData(newTableData);
-    },
-    [tableData, setTableData]
-  );
 
   return (
     <Box
@@ -50,7 +28,6 @@ function App() {
           <FrameworkCard
             key={framework.name}
             {...framework}
-            onNewData={onNewData}
           />
         ))}
       </Box>
@@ -66,7 +43,7 @@ function App() {
           onClickOutside={() => setIsTableShowing(false)}
         >
           <ErrorBoundary>
-            <FrameworkDetails data={tableData} />
+            <FrameworkDetails />
           </ErrorBoundary>
         </Layer>
       ) : null}

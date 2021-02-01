@@ -12,7 +12,7 @@ import ErrorBoundary from "../errors/ErrorBoundary";
 // Queries
 import { useRepo } from "../../api/queries";
 
-const FrameworkCard = ({ display, name, imgSrc, repoUrl, onNewData }) => {
+const FrameworkCard = ({ display, name, imgSrc, repoUrl }) => {
   const { data } = useRepo({ name, repoUrl });
   const [cardData, setCardData] = useState({
     subscribers_count: 0,
@@ -28,9 +28,8 @@ const FrameworkCard = ({ display, name, imgSrc, repoUrl, onNewData }) => {
         subscribers_count,
         open_issues_count,
       });
-      onNewData({ name, ...data });
     }
-  }, [data, name, onNewData]);
+  }, [data, name]);
 
   return (
     <Card height="medium" width="medium" background="light-1">
