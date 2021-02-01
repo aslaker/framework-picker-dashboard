@@ -10,7 +10,7 @@
     "axios": "^0.21.1",
     "grommet": "^2.16.2",
     "grommet-icons": "^4.5.0",
-    "material-table": "^1.69.2",
+    "material-table": "1.61.0",
     "numeral": "^2.0.6",
     "polished": "^4.1.0",
     "react": "^17.0.1",
