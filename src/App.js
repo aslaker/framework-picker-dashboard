@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 // Grommet
 import { Box, Button, Layer } from "grommet";
@@ -11,8 +11,31 @@ import ErrorBoundary from "./components/errors/ErrorBoundary";
 // Data
 import { frameworks } from "./data/frameworks";
 
+function findAndReplaceData(tableData, newData) {
+  const tableDataCopy = [...tableData];
+  const tableIndex = tableDataCopy.findIndex(
+    (tableItem) => tableItem.name === newData.name
+  );
+  if (tableIndex === -1) {
+    tableDataCopy.push(newData);
+  } else {
+    tableDataCopy[tableIndex] = newData;
+  }
+  return tableDataCopy;
+}
+
 function App() {
+  const [tableData, setTableData] = useState([]);
   const [isTableShowing, setIsTableShowing] = useState(false);
+
+  const onNewData = useCallback(
+    (newData) => {
+      const newTableData = findAndReplaceData(tableData, newData);
+      setTableData(newTableData);
+    },
+    [tableData, setTableData]
+  );
+
   return (
     <Box
       fill
@@ -24,9 +47,11 @@ function App() {
     >
       <Box direction="row" justify="center" align="center" gap="medium">
         {frameworks.map((framework) => (
-          <ErrorBoundary>
-            <FrameworkCard {...framework} />
-          </ErrorBoundary>
+          <FrameworkCard
+            key={framework.name}
+            {...framework}
+            onNewData={onNewData}
+          />
         ))}
       </Box>
       <Button
@@ -41,7 +66,7 @@ function App() {
           onClickOutside={() => setIsTableShowing(false)}
         >
           <ErrorBoundary>
-            <FrameworkDetails />
+            <FrameworkDetails data={tableData} />
           </ErrorBoundary>
         </Layer>
       ) : null}

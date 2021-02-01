@@ -7,11 +7,12 @@ import { Star, View, Archive } from "grommet-icons";
 
 // Components
 import GithubMetric from "./GithubMetric/GithubMetric";
+import ErrorBoundary from "../errors/ErrorBoundary";
 
 // Queries
 import { useRepo } from "../../api/queries";
 
-const FrameworkCard = ({ display, name, imgSrc, repoUrl }) => {
+const FrameworkCard = ({ display, name, imgSrc, repoUrl, onNewData }) => {
   const { data } = useRepo({ name, repoUrl });
   const [cardData, setCardData] = useState({
     subscribers_count: 0,
@@ -27,39 +28,44 @@ const FrameworkCard = ({ display, name, imgSrc, repoUrl }) => {
         subscribers_count,
         open_issues_count,
       });
+      onNewData({ name, ...data });
     }
-  }, [data]);
+  }, [data, name]);
 
   return (
     <Card height="medium" width="medium" background="light-1">
-      <CardHeader pad="medium" justify="between" gap="10px">
-        <Heading level="2">{display}</Heading>
-        <Box height="xsmall" width="xsmall">
-          <Image fit="cover" src={imgSrc} />
-        </Box>
-      </CardHeader>
-      <CardBody pad="medium" direction="row" align="center">
-        <GithubMetric title="Number of Github stars">
-          <Star />{" "}
-          <span>{numeral(cardData.stargazers_count).format("Oa")}</span>
-        </GithubMetric>
-        <GithubMetric
-          title="Number of people watching the repo"
-          border={[
-            { size: "small", side: "right" },
-            { size: "small", side: "left" },
-          ]}
-        >
-          <View />{" "}
-          <span>{numeral(cardData.subscribers_count).format("Oa")}</span>
-        </GithubMetric>
-        <GithubMetric title="Number of open issues and pull requests">
-          <Archive />{" "}
-          <span>{numeral(cardData.open_issues_count).format("Oa")}</span>
-        </GithubMetric>
-      </CardBody>
+      <ErrorBoundary>
+        <CardHeader pad="medium" justify="between" gap="10px">
+          <Heading level="2">{display}</Heading>
+          <Box height="xsmall" width="xsmall">
+            <Image fit="cover" src={imgSrc} />
+          </Box>
+        </CardHeader>
+        <CardBody pad="medium" direction="row" align="center">
+          <GithubMetric title="Number of Github stars">
+            <Star />{" "}
+            <span>{numeral(cardData.stargazers_count).format("Oa")}</span>
+          </GithubMetric>
+          <GithubMetric
+            title="Number of people watching the repo"
+            border={[
+              { size: "small", side: "right" },
+              { size: "small", side: "left" },
+            ]}
+          >
+            <View />{" "}
+            <span>{numeral(cardData.subscribers_count).format("Oa")}</span>
+          </GithubMetric>
+          <GithubMetric title="Number of open issues and pull requests">
+            <Archive />{" "}
+            <span>{numeral(cardData.open_issues_count).format("Oa")}</span>
+          </GithubMetric>
+        </CardBody>
+      </ErrorBoundary>
     </Card>
   );
 };
 
-export default FrameworkCard;
+const memoizedFrameworkCard = React.memo(FrameworkCard);
+
+export default memoizedFrameworkCard;
