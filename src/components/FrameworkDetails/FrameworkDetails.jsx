@@ -11,7 +11,6 @@ import { frameworks } from '../../data/frameworks'
 const columns = [
   { title: "Framework", field: "name", render: rowData => {
     const selectedFramework = frameworks.find(framework => framework.name === rowData.name)
-    debugger
     return <img width="50px" height="50px" src={selectedFramework.imgSrc} alt={rowData.name}/>
   } },
   { title: "Stars", field: "stargazers_count" },
