@@ -1,4 +1,3 @@
-require('dotenv').config()
 const faunadb = require('faunadb')
 
 const queryTools = faunadb.query

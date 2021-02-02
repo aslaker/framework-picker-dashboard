@@ -4,18 +4,11 @@
   "description": "",
   "main": "api.js",
   "scripts": {
-    "start:dev": "SEED=true node ./data/sequelize.js",
-    "start": "SEED=false node ./data/sequelize.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "faunadb": "^4.0.2"
-  },
-  "devDependencies": {
-    "dotenv": "^8.2.0",
-    "sequelize": "^6.5.0",
-    "sqlite3": "5.0.0"
   }
 }

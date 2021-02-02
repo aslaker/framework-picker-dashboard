@@ -21,7 +21,6 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "prestart": "cd functions && yarn install",
     "start": "react-scripts start",
     "prebuild": "cd functions && yarn install",
     "build": "react-scripts build",
