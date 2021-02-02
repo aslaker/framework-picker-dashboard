@@ -1,9 +1,0 @@
-{
-    "votes": [
-        {"email": "aslaker@gmail.com", "choice": "React"},
-        {"email": "adamslaker@gmail.com", "choice": "Angular"},
-        {"email": "test@test.com", "choice": "Vue"},
-        {"email": "admin@admin.com", "choice": "Ember"},
-        {"email": "adamslaker@yahoo.com", "choice": "React"}
-    ]
-}

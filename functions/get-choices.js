@@ -1,33 +1,26 @@
-/* Import faunaDB sdk */
-const { Vote, db } = require("./data/sequelize");
+require('dotenv').config()
+const faunadb = require('faunadb')
 
-console.log(__dirname);
+const queryTools = faunadb.query
+const client = new faunadb.Client({
+  secret: process.env.FAUNADB_SERVER_SECRET
+})
+
+const { Map, Paginate, Match, Index, Lambda, Select, Get, Var} = queryTools;
 
 exports.handler = () => {
-  console.log("Function `get-choices` invoked");
-
-  return Vote.findAll({
-    raw: true,
-    attributes: ["choice", [db.fn("COUNT", db.col("*")), "count"]],
-    group: "choice",
+  return client.query(Map(
+    Paginate(Match(Index("all_votes"))),
+    Lambda("X", Select(["data", "choice"], Get(Var("X"))))
+  )).then((results) => {
+    return {
+      statusCode: 200,
+      body: JSON.stringify(results)
+    }
+  }).catch(err => {
+    return {
+      statusCode: 400,
+      body: JSON.stringify(err)
+    }
   })
-    .then((votes) => {
-      console.log("VOTES: ", votes);
-      const response = votes.reduce((responseObject, { choice, count }) => {
-        responseObject[choice] = count;
-        return responseObject;
-      }, {});
-      console.log(("RESPONSE: ", response));
-
-      return {
-        statusCode: 200,
-        body: JSON.stringify(response),
-      };
-    })
-    .catch((err) => {
-      return {
-        statusCode: 400,
-        body: JSON.stringify(err),
-      };
-    });
-};
+}

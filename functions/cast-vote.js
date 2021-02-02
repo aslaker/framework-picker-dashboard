@@ -1,45 +1,27 @@
-/* Import faunaDB sdk */
-const { Vote } = require("./data/sequelize");
+require('dotenv').config()
+const faunadb = require('faunadb')
+
+const queryTools = faunadb.query
+const client = new faunadb.Client({
+  secret: process.env.FAUNADB_SERVER_SECRET
+})
+
+const { Create, Collection} = queryTools;
 
 exports.handler = (event) => {
-  console.log("Function `cast-vote` invoked");
+  const data = JSON.parse(event.body);
 
-  const { email, choice } = JSON.parse(event.body);
-
-  Vote.create({
-    email,
-    choice,
-  })
-    .then(() => {
+  
+  return client.query(Create(Collection('votes'), { data: data }))
+    .then((response) => {
       return {
-        statusCode: 201,
-        body: JSON.stringify({ message: "success" }),
-      };
-    })
-    .catch((err) => {
-      const { errors } = err;
-      const { path, type } = errors[0];
-
-      if (
-        errors.length === 1 &&
-        path === "email" &&
-        type === "unique violation"
-      ) {
-        return {
-          statusCode: 406,
-          body: JSON.stringify({
-            message:
-              "The user associated with this email address already voted.  You can only vote once!",
-          }),
-        };
-      } else {
-        return {
-          statusCode: 500,
-          body: JSON.stringify({
-            message:
-              "There was an issue with our database.  Please refresh and try saving again.",
-          }),
-        };
+        statusCode: 200,
+        body: JSON.stringify(response)
       }
-    });
-};
+    }).catch(err => {
+      return {
+        statusCode: 400,
+        body: JSON.stringify(err)
+      }
+    })
+}

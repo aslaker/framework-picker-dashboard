@@ -24,4 +24,10 @@ export const frameworks = [
     imgSrc: "https://emberjs.com/images/brand/ember_E-Icon-4c-Square.png",
     repoUrl: "/repos/emberjs/ember.js",
   },
+  // {
+  //   name: "svelte",
+  //   display: "Svelte",
+  //   imgSrc: "",
+  //   repoUrl: "/repos/sveltejs/svelte"
+  // }
 ];
