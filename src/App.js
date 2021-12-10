@@ -22,6 +22,7 @@ function App() {
       justify="center"
       align="center"
       gap="large"
+      pad="medium"
     >
       <Box direction="row" justify="center" align="center" gap="medium">
         {frameworks.map((framework) => (
