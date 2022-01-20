@@ -11,17 +11,20 @@ import {
   Box,
   Image,
   Button,
+  Layer,
 } from "grommet";
 import { Star, View, Archive } from "grommet-icons";
 
 // Components
 import GithubMetric from "./GithubMetric/GithubMetric";
+import VotingModal from "../VotingModal/VotingModal";
 import ErrorBoundary from "../errors/ErrorBoundary";
 
 // Queries
 import { useRepo } from "../../api/queries";
 
 const FrameworkCard = ({ display, name, imgSrc, repoUrl }) => {
+  const [isVoting, setIsVoting] = useState(false);
   const { data } = useRepo({ name, repoUrl });
   const [cardData, setCardData] = useState({
     subscribers_count: 0,
@@ -41,44 +44,54 @@ const FrameworkCard = ({ display, name, imgSrc, repoUrl }) => {
   }, [data, name]);
 
   return (
-    <Card height="medium" width="medium" background="light-1">
-      <ErrorBoundary>
-        <CardHeader pad="medium" justify="between" gap="10px">
-          <Heading level="2">{display}</Heading>
-          <Box height="xsmall" width="xsmall">
-            <Image fit="contain" src={imgSrc} />
-          </Box>
-        </CardHeader>
-        <CardBody pad="medium" direction="row" align="center">
-          <GithubMetric title="Number of Github stars">
-            <Star />{" "}
-            <span>{numeral(cardData.stargazers_count).format("Oa")}</span>
-          </GithubMetric>
-          <GithubMetric
-            title="Number of people watching the repo"
-            border={[
-              { size: "small", side: "right" },
-              { size: "small", side: "left" },
-            ]}
+    <>
+      <Card height="medium" width="medium" background="light-1">
+        <ErrorBoundary>
+          <CardHeader pad="medium" justify="between" gap="10px">
+            <Heading level="2">{display}</Heading>
+            <Box height="xsmall" width="xsmall">
+              <Image fit="contain" src={imgSrc} />
+            </Box>
+          </CardHeader>
+          <CardBody pad="medium" direction="row" align="center">
+            <GithubMetric title="Number of Github stars">
+              <Star />{" "}
+              <span>{numeral(cardData.stargazers_count).format("Oa")}</span>
+            </GithubMetric>
+            <GithubMetric
+              title="Number of people watching the repo"
+              border={[
+                { size: "small", side: "right" },
+                { size: "small", side: "left" },
+              ]}
+            >
+              <View />{" "}
+              <span>{numeral(cardData.subscribers_count).format("Oa")}</span>
+            </GithubMetric>
+            <GithubMetric title="Number of open issues and pull requests">
+              <Archive />{" "}
+              <span>{numeral(cardData.open_issues_count).format("Oa")}</span>
+            </GithubMetric>
+          </CardBody>
+          <CardFooter
+            direction="row"
+            justify="center"
+            alignContent="center"
+            pad="medium"
           >
-            <View />{" "}
-            <span>{numeral(cardData.subscribers_count).format("Oa")}</span>
-          </GithubMetric>
-          <GithubMetric title="Number of open issues and pull requests">
-            <Archive />{" "}
-            <span>{numeral(cardData.open_issues_count).format("Oa")}</span>
-          </GithubMetric>
-        </CardBody>
-        <CardFooter
-          direction="row"
-          justify="center"
-          alignContent="center"
-          pad="medium"
+            <Button primary label="Vote" onClick={() => setIsVoting(true)} />
+          </CardFooter>
+        </ErrorBoundary>
+      </Card>
+      {isVoting ? (
+        <Layer
+          onEsc={() => setIsVoting(false)}
+          onClickOutside={() => setIsVoting(false)}
         >
-          <Button primary label="Vote" />
-        </CardFooter>
-      </ErrorBoundary>
-    </Card>
+          <VotingModal frameworkDisplay={display} frameworkName={name} />
+        </Layer>
+      ) : null}
+    </>
   );
 };
 

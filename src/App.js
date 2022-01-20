@@ -17,35 +17,38 @@ function App() {
   return (
     <Box
       fill
-      background="brand"
+      background="light-2"
       direction="column"
       justify="center"
       align="center"
-      gap="large"
+      gap="small"
       pad="medium"
     >
-      <Grid fill rows="medium" columns="medium" gap="medium" alignContent="center" justifyContent="center">
-        {frameworks.map((framework) => (
-          <FrameworkCard
-            key={framework.name}
-            {...framework}
-          />
-        ))}
-      </Grid>
       <Button
         primary
         color="accent-1"
-        label="View Details"
+        label="View Framework Details"
         onClick={() => setIsTableShowing(true)}
+        alignSelf="end"
       />
+      <Grid
+        fill
+        rows="medium"
+        columns="medium"
+        gap="medium"
+        alignContent="center"
+        justifyContent="center"
+      >
+        {frameworks.map((framework) => (
+          <FrameworkCard key={framework.name} {...framework} />
+        ))}
+      </Grid>
       {isTableShowing ? (
         <Layer
           onEsc={() => setIsTableShowing(false)}
           onClickOutside={() => setIsTableShowing(false)}
         >
-          <ErrorBoundary>
-            <FrameworkDetails />
-          </ErrorBoundary>
+          <FrameworkDetails />
         </Layer>
       ) : null}
     </Box>

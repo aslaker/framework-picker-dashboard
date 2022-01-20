@@ -5,5 +5,5 @@ export const githubAPI = axios.create({
 });
 
 export const voteAPI = axios.create({
-  baseURL: ".netlify/functions",
+  baseURL: "/api",
 });
