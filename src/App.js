@@ -6,7 +6,6 @@ import { Box, Button, Layer, Grid } from "grommet";
 // Components
 import FrameworkCard from "./components/FrameworkCard/FrameworkCard";
 import FrameworkDetails from "./components/FrameworkDetails/FrameworkDetails";
-import ErrorBoundary from "./components/errors/ErrorBoundary";
 
 // Data
 import { frameworks } from "./data/frameworks";
