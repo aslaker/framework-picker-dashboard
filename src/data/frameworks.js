@@ -21,13 +21,13 @@ export const frameworks = [
   {
     name: "ember.js",
     display: "EmberJS",
-    imgSrc: "https://emberjs.com/images/brand/ember_E-Icon-4c-Square.png",
+    imgSrc: "https://emberjs.com/images/brand/ember-4c.svg",
     repoUrl: "/repos/emberjs/ember.js",
   },
-  // {
-  //   name: "svelte",
-  //   display: "Svelte",
-  //   imgSrc: "",
-  //   repoUrl: "/repos/sveltejs/svelte"
-  // }
+  {
+    name: "svelte",
+    display: "Svelte",
+    imgSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Svelte_Logo.svg/1200px-Svelte_Logo.svg.png",
+    repoUrl: "/repos/sveltejs/svelte"
+  }
 ];

@@ -2,7 +2,16 @@ import React, { useState, useEffect } from "react";
 import * as numeral from "numeral";
 
 // Grommet
-import { Card, CardBody, CardHeader, Heading, Box, Image } from "grommet";
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  CardFooter,
+  Heading,
+  Box,
+  Image,
+  Button,
+} from "grommet";
 import { Star, View, Archive } from "grommet-icons";
 
 // Components
@@ -37,7 +46,7 @@ const FrameworkCard = ({ display, name, imgSrc, repoUrl }) => {
         <CardHeader pad="medium" justify="between" gap="10px">
           <Heading level="2">{display}</Heading>
           <Box height="xsmall" width="xsmall">
-            <Image fit="cover" src={imgSrc} />
+            <Image fit="contain" src={imgSrc} />
           </Box>
         </CardHeader>
         <CardBody pad="medium" direction="row" align="center">
@@ -60,6 +69,14 @@ const FrameworkCard = ({ display, name, imgSrc, repoUrl }) => {
             <span>{numeral(cardData.open_issues_count).format("Oa")}</span>
           </GithubMetric>
         </CardBody>
+        <CardFooter
+          direction="row"
+          justify="center"
+          alignContent="center"
+          pad="medium"
+        >
+          <Button primary label="Vote" />
+        </CardFooter>
       </ErrorBoundary>
     </Card>
   );

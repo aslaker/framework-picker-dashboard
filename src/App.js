@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 // Grommet
-import { Box, Button, Layer } from "grommet";
+import { Box, Button, Layer, Grid } from "grommet";
 
 // Components
 import FrameworkCard from "./components/FrameworkCard/FrameworkCard";
@@ -24,14 +24,14 @@ function App() {
       gap="large"
       pad="medium"
     >
-      <Box direction="row" justify="center" align="center" gap="medium">
+      <Grid fill rows="medium" columns="medium" gap="medium" alignContent="center" justifyContent="center">
         {frameworks.map((framework) => (
           <FrameworkCard
             key={framework.name}
             {...framework}
           />
         ))}
-      </Box>
+      </Grid>
       <Button
         primary
         color="accent-1"
