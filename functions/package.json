@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "api.js",
-  "scripts": {
-  },
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "faunadb": "^4.0.2"
+    "faunadb": "4.4.1"
   }
 }
