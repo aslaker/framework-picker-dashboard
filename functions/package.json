@@ -8,6 +8,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "faunadb": "4.4.1"
+    "faunadb": "4.4.2"
   }
 }
